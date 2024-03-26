@@ -1,22 +1,25 @@
 module github.com/falcosecurity/falcoctl
 
-go 1.21
+go 1.21.0
+
+toolchain go1.22.1
 
 require (
 	cloud.google.com/go/storage v1.39.1
 	github.com/blang/semver v3.5.1+incompatible
 	github.com/blang/semver/v4 v4.0.0
+	github.com/cilium/ebpf v0.13.2
 	github.com/distribution/distribution/v3 v3.0.0-alpha.1
-	github.com/docker/cli v25.0.4+incompatible
-	github.com/docker/docker v25.0.5+incompatible
+	github.com/docker/cli v26.0.0+incompatible
+	github.com/docker/docker v26.0.0+incompatible
 	github.com/falcosecurity/driverkit v0.16.3
 	github.com/go-oauth2/oauth2/v4 v4.5.2
 	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/google/go-containerregistry v0.19.1
 	github.com/gookit/color v1.5.4
 	github.com/mitchellh/mapstructure v1.5.0
-	github.com/onsi/ginkgo/v2 v2.16.0
-	github.com/onsi/gomega v1.31.1
+	github.com/onsi/ginkgo/v2 v2.17.1
+	github.com/onsi/gomega v1.32.0
 	github.com/opencontainers/image-spec v1.1.0
 	github.com/oras-project/oras-credentials-go v0.3.1
 	github.com/pterm/pterm v0.12.79
@@ -32,13 +35,13 @@ require (
 	github.com/spf13/viper v1.18.2
 	golang.org/x/crypto v0.21.0
 	golang.org/x/exp v0.0.0-20231108232855-2478ac86f678
-	google.golang.org/api v0.170.0
+	google.golang.org/api v0.171.0
 	gopkg.in/ini.v1 v1.67.0
 	gopkg.in/yaml.v3 v3.0.1
 	k8s.io/apimachinery v0.29.3
 	k8s.io/client-go v0.29.3
 	k8s.io/utils v0.0.0-20230726121419-3b25d923346b
-	oras.land/oras-go/v2 v2.4.0
+	oras.land/oras-go/v2 v2.5.0
 )
 
 require (
@@ -167,7 +170,7 @@ require (
 	github.com/google/s2a-go v0.1.7 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.3.2 // indirect
-	github.com/googleapis/gax-go/v2 v2.12.2 // indirect
+	github.com/googleapis/gax-go/v2 v2.12.3 // indirect
 	github.com/gorilla/handlers v1.5.1 // indirect
 	github.com/gorilla/mux v1.8.1 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.18.0 // indirect
@@ -286,8 +289,8 @@ require (
 	golang.org/x/tools v0.17.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
 	google.golang.org/genproto v0.0.0-20240213162025-012b6fc9bca9 // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20240304161311-37d4d3c04a78 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240311132316-a219d84964c2 // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20240311132316-a219d84964c2 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20240314234333-6e1732d8331c // indirect
 	google.golang.org/grpc v1.62.1 // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
 	gopkg.in/go-jose/go-jose.v2 v2.6.3 // indirect

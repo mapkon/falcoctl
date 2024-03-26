@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Copyright (C) 2023 The Falco Authors
+// Copyright (C) 2024 The Falco Authors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -111,4 +111,19 @@ func (c *cos) customizeBuild(ctx context.Context,
 		env[kbuildExtraCppFlagsEnv] = enableCos73Workaround
 	}
 	return env, nil
+}
+
+// PreferredDriver is reimplemented since COS does not support kmod
+//
+//nolint:gocritic // the method shall not be able to modify kr
+func (c *cos) PreferredDriver(kr kernelrelease.KernelRelease, allowedDriverTypes []drivertype.DriverType) drivertype.DriverType {
+	for _, allowedDrvType := range allowedDriverTypes {
+		if allowedDrvType.String() == drivertype.TypeKmod {
+			continue
+		}
+		if allowedDrvType.Supported(kr) {
+			return allowedDrvType
+		}
+	}
+	return nil
 }

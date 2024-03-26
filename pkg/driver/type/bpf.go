@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Copyright (C) 2023 The Falco Authors
+// Copyright (C) 2024 The Falco Authors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -71,6 +71,11 @@ func (b *bpf) Extension() string {
 
 func (b *bpf) HasArtifacts() bool {
 	return true
+}
+
+//nolint:gocritic // the method shall not be able to modify kr
+func (b *bpf) Supported(kr kernelrelease.KernelRelease) bool {
+	return kr.SupportsProbe()
 }
 
 //nolint:gocritic // the method shall not be able to modify kr

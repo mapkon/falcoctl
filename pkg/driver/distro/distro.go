@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Copyright (C) 2023 The Falco Authors
+// Copyright (C) 2024 The Falco Authors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -39,9 +39,10 @@ import (
 )
 
 const (
-	// DefaultFalcoRepo is the default repository provided by falcosecurity to download driver artifacts from.
 	kernelDirEnv            = "KERNELDIR"
 	kernelSrcDownloadFolder = "kernel-sources"
+	// UndeterminedDistro is the string used for the generic distro object returned when we cannot determine the distro.
+	UndeterminedDistro = "undetermined"
 )
 
 var (
@@ -60,7 +61,7 @@ type Distro interface {
 	FixupKernel(kr kernelrelease.KernelRelease) kernelrelease.KernelRelease // private
 	customizeBuild(ctx context.Context, printer *output.Printer, driverType drivertype.DriverType,
 		kr kernelrelease.KernelRelease) (map[string]string, error)
-	PreferredDriver(kr kernelrelease.KernelRelease) drivertype.DriverType
+	PreferredDriver(kr kernelrelease.KernelRelease, allowedDriverTypes []drivertype.DriverType) drivertype.DriverType
 	fmt.Stringer
 }
 
@@ -93,7 +94,7 @@ func Discover(kr kernelrelease.KernelRelease, hostroot string) (Distro, error) {
 
 	// Return a generic distro to try the build
 	distro = &generic{}
-	if err = distro.init(kr, "undetermined", nil); err != nil {
+	if err = distro.init(kr, UndeterminedDistro, nil); err != nil {
 		return nil, err
 	}
 	return distro, ErrUnsupported
